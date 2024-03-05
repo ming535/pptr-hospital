@@ -4,8 +4,9 @@ const urlParser = require("url");
 const axios = require("axios");
 
 async function main() {
+  let browser;
   try {
-    const browser = await puppeteer.launch({
+    browser = await puppeteer.launch({
       // headless: false,
       args: [
         // Required for Docker version of Puppeteer
@@ -95,8 +96,15 @@ async function main() {
     }
     await browser.close();
   } catch (e) {
-    console.error(e);
-    exit(1);
+    console.error(`Failed to scrap: ${e}`);
+  } finally {
+    if (browser) {
+      try {
+        await browser.close();
+      } catch (e) {
+        console.error(`Failed to close browser: ${e}`);
+      }
+    }
   }
 }
 
