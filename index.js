@@ -96,6 +96,7 @@ async function main() {
     await browser.close();
   } catch (e) {
     console.error(e);
+    exit(1);
   }
 }
 
