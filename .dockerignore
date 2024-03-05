@@ -1,0 +1,58 @@
+# flyctl launch added from .gitignore
+**/dist
+**/.DS_Store
+
+# dotenv environment variable files
+**/.env
+
+# database files
+**/*.sqlite
+**/*.sqlite3
+
+# Logs
+**/logs
+**/*.log
+**/npm-debug.log*
+**/yarn-debug.log*
+**/yarn-error.log*
+**/lerna-debug.log*
+**/.pnpm-debug.log*
+
+# Dependency directories
+**/node_modules
+
+# ctags
+**/tags
+
+# clinicjs
+**/.clinic
+
+# flyctl launch added from services/pptr/.gitignore
+services/pptr/**/dist
+services/pptr/**/.DS_Store
+
+# dotenv environment variable files
+services/pptr/**/.env
+
+# database files
+services/pptr/**/*.sqlite
+services/pptr/**/*.sqlite3
+
+# Logs
+services/pptr/**/logs
+services/pptr/**/*.log
+services/pptr/**/npm-debug.log*
+services/pptr/**/yarn-debug.log*
+services/pptr/**/yarn-error.log*
+services/pptr/**/lerna-debug.log*
+services/pptr/**/.pnpm-debug.log*
+
+# Dependency directories
+services/pptr/**/node_modules
+
+# ctags
+services/pptr/**/tags
+
+# clinicjs
+services/pptr/**/.clinic
+fly.toml
