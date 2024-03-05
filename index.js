@@ -6,17 +6,23 @@ const axios = require("axios");
 async function main() {
   let browser;
   try {
-    browser = await puppeteer.launch({
-      // headless: false,
-      args: [
-        // Required for Docker version of Puppeteer
-        "--no-sandbox",
-        "--disable-setuid-sandbox",
-        // This will write shared memory files into /tmp instead of /dev/shm,
-        // because Docker’s default for /dev/shm is 64MB
-        "--disable-dev-shm-usage",
-      ],
-    });
+    if (process.env.NODE_ENV === "production") {
+      browser = await puppeteer.launch({
+        // headless: false,
+        args: [
+          // Required for Docker version of Puppeteer
+          "--no-sandbox",
+          "--disable-setuid-sandbox",
+          // This will write shared memory files into /tmp instead of /dev/shm,
+          // because Docker’s default for /dev/shm is 64MB
+          "--disable-dev-shm-usage",
+        ],
+      });
+    } else {
+      browser = await puppeteer.launch({
+        headless: false,
+      });
+    }
 
     const page = await browser.newPage();
     await page.setUserAgent(
@@ -45,15 +51,15 @@ async function main() {
     for (let element of links) {
       const text = await page.evaluate((el) => el.textContent, element);
       if (text === "眼科") {
-        element.click();
+        await element.click();
       }
     }
 
-    const pageSelector = 'a[pageIndex="3"';
+    const pageSelector = 'a[pageIndex="4"]';
     await page.waitForSelector(pageSelector);
     await page.click(pageSelector);
 
-    const doctorSelector = ".ys_list";
+    const doctorSelector = ".ys_list2";
     await page.waitForSelector(doctorSelector);
     const doctors = await page.$$(doctorSelector);
     console.log("doctors: ", doctors.length);
