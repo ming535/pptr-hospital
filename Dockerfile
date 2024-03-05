@@ -12,6 +12,8 @@ WORKDIR /pptr-app
 COPY . .
 RUN npm install
 
+RUN apk --no-cache add curl
+
 # Latest releases available at https://github.com/aptible/supercronic/releases
 ENV SUPERCRONIC_URL=https://github.com/aptible/supercronic/releases/download/v0.2.29/supercronic-linux-amd64 \
     SUPERCRONIC=supercronic-linux-amd64 \
