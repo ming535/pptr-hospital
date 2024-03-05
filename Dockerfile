@@ -5,7 +5,7 @@ ENV PUPPETEER_EXECUTABLE_PATH /usr/bin/chromium-browser
 
 ENV NODE_ENV=production
 
-WORKDIR /app
+WORKDIR /pptr-app
 
 COPY . .
 RUN npm install
@@ -24,4 +24,4 @@ RUN curl -fsSLO "$SUPERCRONIC_URL" \
 COPY . .
 
 
-CMD ["supercronic" , "/app/crontab"]
+CMD ["supercronic" , "/pptr-app/crontab"]
